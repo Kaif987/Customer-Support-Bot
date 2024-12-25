@@ -8,7 +8,7 @@ from agents.research_assistant import research_assistant
 from agents.customer_support_multiagent import customer_support
 from schema import AgentInfo
 
-DEFAULT_AGENT = "research-assistant"
+DEFAULT_AGENT = "customer-support-agent"
 
 
 @dataclass
