@@ -47,5 +47,4 @@ This repository hosts a [Customer Support Bot](https://langchain-ai.github.io/la
    ```
 
 ## Graph Image
-
-![Agent Demo GIF](https://i.imgur.com/L8L7I0C.gif)
+![Customer Support](https://i.imgur.com/mU8Luyk.jpeg)
