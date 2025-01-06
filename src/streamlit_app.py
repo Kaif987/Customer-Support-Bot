@@ -81,7 +81,7 @@ async def main() -> None:
         }
 
     if "thread_id" not in st.session_state:
-        thread_id = st.query_params.get("thread_id")
+        thread_id = st.query_params.get('thread_id')
         if not thread_id:
             thread_id = get_script_run_ctx().session_id
             messages = []
@@ -175,7 +175,7 @@ async def main() -> None:
                         case "ai":
                             st.chat_message("ai").write(chat_message.content)
                         case "interrupt":
-                            st.write(f"Are you sure you want to call this {chat_message.custom_data["name"]}")
+                            st.write(f"Are you sure you want to call this {chat_message.custom_data.get('name')}")
                             st.session_state["interrupt_state"].update(
                                 {
                                     "interruption": chat_message,
@@ -200,7 +200,7 @@ async def main() -> None:
             model=model,
             thread_id=st.session_state.thread_id,
             run_id=st.session_state["interrupt_state"]["interruption"].run_id,
-            tool_call_id=st.session_state["interrupt_state"]["interruption"].custom_data["id"],
+            tool_call_id=st.session_state["interrupt_state"]["interruption"].custom_data.get('id'),
             interruption=True
         )
         await draw_messages(stream, is_new=True)
@@ -281,7 +281,7 @@ async def draw_messages(
 
                 with st.session_state.last_message:
                     # if msg.confirmation_msg:
-                    st.write(f"Are you sure you want to call this {msg.custom_data["name"]}")
+                    st.write(f"Are you sure you want to call this {msg.custom_data.get('name')}")
 
                 st.session_state["interrupt_state"].update(
                     {
