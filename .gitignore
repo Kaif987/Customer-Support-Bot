@@ -73,7 +73,7 @@ travel2.sqlite
 travel2.backup.sqlite
 *.sqlite
 
-
+nextjs-frontend
 
 # Flask stuff:
 instance/

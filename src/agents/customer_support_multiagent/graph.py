@@ -10,14 +10,26 @@ from agents.customer_support_multiagent.assistants.hotel_assistant import book_h
 from agents.customer_support_multiagent.assistants.excursion_assistant import book_excursion_runnable, book_excursion_sensitive_tools, book_excursion_safe_tools, route_book_excursion
 from agents.customer_support_multiagent.assistants.primary_assistant import assistant_runnable, primary_assistant_tools, route_primary_assistant, route_to_workflow
 from langgraph.constants import END
+from core import settings
+import os
 
 
 class Workflow:
-    local_file = "/home/kaif-siddiqui/2024/agent-service-toolkit/src/agents/customer_support_multiagent/travel2.sqlite"
-    # The backup lets us restart for each tutorial section
-    backup_file = "/home/kaif-siddiqui/2024/agent-service-toolkit/src/agents/customer_support_multiagent/travel2.backup.sqlite"
+    local_file = "./agents/customer_support_multiagent/travel2.sqlite"
+    backup_file = "./agents/customer_support_multiagent/travel2.backup.sqlite"
+
+    if(settings.is_dev()):
+        local_file = "./src/agents/customer_support_multiagent/travel2.sqlite"
+        # The backup lets us restart for each tutorial section
+        backup_file = "./src/agents/customer_support_multiagent/travel2.backup.sqlite"
 
     def __init__(self):
+        if not os.path.exists(self.local_file):
+            raise FileNotFoundError(f"Local file not found {self.local_file}")
+
+        if not os.path.exists(self.backup_file):
+            raise FileNotFoundError(f"Backup file not found {self.backup_file}")
+
         self.db = update_dates(backup_file=self.backup_file, file=self.local_file) 
         # create graph
         workflow = StateGraph(State)

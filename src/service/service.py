@@ -15,6 +15,7 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.graph.state import CompiledStateGraph
 from langsmith import Client as LangsmithClient
+from fastapi.middleware.cors import CORSMiddleware
 
 from agents import DEFAULT_AGENT, get_agent, get_all_agent_info
 from core import settings
@@ -66,6 +67,15 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins during development; specify domains in production
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
+
 router = APIRouter(dependencies=[Depends(verify_bearer)])
 
 
