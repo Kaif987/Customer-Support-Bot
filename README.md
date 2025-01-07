@@ -2,6 +2,8 @@
 
 This repository hosts a [Customer Support Bot](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/) built using **Streamlit**, **FastAPI**, and **LangGraph**. The bot can answer queries regarding Flight booking, Hotel Booking, Excursion and Car rental services. It also has access to tools to lookup policies, make sensitive changes like book a car, or a hotel. This repository is built on top of [Agent Service Toolkit](https://github.com/JoshuaC215/agent-service-toolkit) which provides a great starting point for building this agent.
 
+### [Try the app!](https://customer-support-bot-1.onrender.com/) 
+*(This is hosted on a free tier on render so this may take a while to load)*
 ![Agent Demo GIF](https://i.imgur.com/L8L7I0C.gif)
 
 ## Features
